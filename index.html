@@ -1,106 +1,613 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Li Moraes - Modelo | Em Manutenção</title>
-    <meta name="description" content="Site oficial da modelo Li Moraes. Portfólio de fotos, contato e informações profissionais.">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <title>Li Moraes | Portfólio Profissional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variáveis de cores e estilos */
         :root {
-            --bg-primary: #1a1423;
-            --bg-secondary: #231933;
-            --accent: #e43f6f;
-            --accent-soft: #642d62;
-            --text-primary: #f9e5f6;
-            --text-secondary: #c7a1c2;
-            --footer-bg: #1e1d2b;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-accent: #2a2a2a;
+            --pink-primary: #ff6b8b;
+            --pink-secondary: #ffafcc;
+            --purple-accent: #c77dff;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
         }
-        html, body {
+
+        /* Reset e estilos gerais */
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', Arial, sans-serif;
-            background: var(--bg-primary);
-            min-height: 100vh;
-            color: var(--text-primary);
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header e navegação */
         header {
-            background: var(--bg-secondary);
-            box-shadow: 0 2px 12px #a62d5d50;
-            padding: 2rem 0 1.5rem 0;
-            text-align: center;
+            padding: 25px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
         }
-        header h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin: 0;
-            color: var(--accent);
-            text-shadow: 0 2px 8px #e43f6f25;
+
+        header.scrolled {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
-        header p {
-            margin-top: 0.5rem;
-            font-weight: 400;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-        }
-        main {
-            flex: 1;
+
+        .header-content {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
         }
-        .maintenance {
-            background: var(--accent);
-            color: #fff;
-            padding: 2rem 3rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 18px #e43f6f60;
-            font-size: 2.2rem;
+
+        .logo {
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 0 2px 8px #a62d5d30;
-        }
-        .coming-soon {
-            font-size: 1.3rem;
-            color: var(--accent);
-            background: var(--accent-soft);
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 2px 10px #642d6240;
-            margin-bottom: 2rem;
-        }
-        footer {
-            text-align: center;
-            padding: 1.5rem 0;
-            background: var(--footer-bg);
-            color: var(--accent);
-            font-size: 1rem;
+            background: linear-gradient(to right, var(--pink-primary), var(--purple-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
         }
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem;}
-            .maintenance { font-size: 1.2rem; }
-            .coming-soon { font-size: 1rem; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--pink-primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pink-primary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--pink-primary), var(--purple-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--pink-primary), var(--purple-accent));
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 139, 0.3);
+        }
+
+        /* Categorias */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 40px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--pink-primary), var(--purple-accent));
+            border-radius: 2px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(45deg, var(--pink-primary), var(--purple-accent));
+            border-color: transparent;
+        }
+
+        /* Galeria */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding-bottom: 80px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay h3 {
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .gallery-item .overlay p {
+            color: var(--pink-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contato e redes sociais */
+        .contact {
+            padding: 80px 0;
+            background: var(--dark-card);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--dark-accent);
+            color: var(--text-light);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--pink-primary), var(--purple-accent));
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Li Moraes</h1>
-        <p>Modelo Profissional</p>
-    </header>
-    <main>
-        <div class="maintenance">EM MANUTENÇÃO</div>
-        <div class="coming-soon">
-            Em breve, o portfólio completo de fotos de Li Moraes estará disponível aqui.<br>
-            Acompanhe nossas redes sociais para novidades!
+    <!-- Efeito de partículas para fundo -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">Li Moraes</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
         </div>
-    </main>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Li Moraes <span>Modelo Profissional</span></h1>
+                <p>Transformando visões em realidade através da arte da modelagem. Cada clique é uma história, cada pose é uma emoção.</p>
+                <a href="#portfolio" class="btn">Ver Portfólio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Portfólio</h2>
+            
+            <div class="categories fade-in">
+                <button class="category-btn active" data-filter="all">Todas</button>
+                <button class="category-btn" data-filter="fashion">Fashion</button>
+                <button class="category-btn" data-filter="beauty">Beleza</button>
+                <button class="category-btn" data-filter="editorial">Editorial</button>
+                <button class="category-btn" data-filter="commercial">Comercial</button>
+            </div>
+            
+            <div class="gallery">
+                <!-- Fashion -->
+                <div class="gallery-item fade-in" data-category="fashion">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Fashion 1">
+                    <div class="overlay">
+                        <h3>Vogue Paris</h3>
+                        <p>Fashion</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" data-category="fashion">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Fashion 2">
+                    <div class="overlay">
+                        <h3>Milão Fashion Week</h3>
+                        <p>Fashion</p>
+                    </div>
+                </div>
+                
+                <!-- Beauty -->
+                <div class="gallery-item fade-in" data-category="beauty">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Beauty 1">
+                    <div class="overlay">
+                        <h3>L'Oréal Campaign</h3>
+                        <p>Beleza</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" data-category="beauty">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Beauty 2">
+                    <div class="overlay">
+                        <h3>Revlon Makeup</h3>
+                        <p>Beleza</p>
+                    </div>
+                </div>
+                
+                <!-- Editorial -->
+                <div class="gallery-item fade-in" data-category="editorial">
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Editorial 1">
+                    <div class="overlay">
+                        <h3>Harper's Bazaar</h3>
+                        <p>Editorial</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" data-category="editorial">
+                    <img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Editorial 2">
+                    <div class="overlay">
+                        <h3>Elle Magazine</h3>
+                        <p>Editorial</p>
+                    </div>
+                </div>
+                
+                <!-- Commercial -->
+                <div class="gallery-item fade-in" data-category="commercial">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Commercial 1">
+                    <div class="overlay">
+                        <h3>Calvin Klein</h3>
+                        <p>Comercial</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" data-category="commercial">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80" alt="Commercial 2">
+                    <div class="overlay">
+                        <h3>Zara Collection</h3>
+                        <p>Comercial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Conecte-se</h2>
+            <p class="fade-in">Entre em contato para trabalhos, colaborações ou simplesmente para dizer olá!</p>
+            
+            <div class="social-links fade-in">
+                <a href="#" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        &copy; 2025 Li Moraes. Todos os direitos reservados.
+        <div class="container">
+            <p>&copy; 2023 Li Moraes. Todos os direitos reservados.</p>
+        </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Inicialização do Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ff6b8b" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#c77dff",
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Filtro da galeria
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.category-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Atualiza botão ativo
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filtra os itens
+                    const filter = button.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animação de entrada
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
